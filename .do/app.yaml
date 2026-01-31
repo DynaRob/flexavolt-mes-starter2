@@ -1,0 +1,63 @@
+name: flexavolt-mes
+region: nyc
+
+services:
+  - name: mes-api
+    github:
+      repo: flexavolt/flexavolt-mes-starter2
+      branch: main
+      deploy_on_push: true
+    source_dir: /
+    build_command: npm install && npm run build
+    run_command: npm --workspace packages/mes-api run start
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    http_port: 8080
+    health_check:
+      http_path: /health
+    envs:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "8080"
+      - key: BASE_URL
+        scope: RUN_AND_BUILD_TIME
+        type: APP_LEVEL
+      - key: SUPABASE_URL
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: SUPABASE_ANON_KEY
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: SUPABASE_SERVICE_ROLE_KEY
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: FIXTURE_TOKEN
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+      - key: PRINT_AGENT_TOKEN
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET
+
+workers:
+  - name: print-agent
+    github:
+      repo: flexavolt/flexavolt-mes-starter2
+      branch: main
+      deploy_on_push: true
+    source_dir: /
+    build_command: npm install && npm run build
+    run_command: npm --workspace packages/print-agent run start
+    environment_slug: node-js
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    envs:
+      - key: BASE_URL
+        scope: RUN_AND_BUILD_TIME
+        type: APP_LEVEL
+      - key: PRINT_AGENT_ID
+        value: AGENT01
+      - key: PRINT_AGENT_TOKEN
+        scope: RUN_AND_BUILD_TIME
+        type: SECRET

@@ -1,0 +1,13 @@
+{
+  "name": "flexavolt-mes-starter",
+  "private": true,
+  "workspaces": [
+    "packages/shared",
+    "packages/mes-api",
+    "packages/print-agent"
+  ],
+  "scripts": {
+    "dev": "npm --workspace packages/mes-api run dev",
+    "build": "npm --workspace packages/shared run build && npm --workspace packages/mes-api run build && npm --workspace packages/print-agent run build"
+  }
+}

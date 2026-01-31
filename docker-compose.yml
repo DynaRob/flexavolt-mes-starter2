@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  mes-api:
+    build:
+      context: .
+      dockerfile: packages/mes-api/Dockerfile
+    env_file: .env
+    ports:
+      - "8080:8080"
+    depends_on:
+      - redis
+
+  print-agent:
+    build:
+      context: .
+      dockerfile: packages/print-agent/Dockerfile
+    env_file: .env
+    environment:
+      - PRINT_AGENT_ID=AGENT01
+    depends_on:
+      - mes-api
