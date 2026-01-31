@@ -8,7 +8,7 @@ services:
       branch: main
       deploy_on_push: true
     source_dir: /
-    build_command: npm install --workspaces && npm run build
+    build_command: npm install --workspaces && npm install typescript --save-dev && npm run build
     run_command: npm --workspace packages/mes-api run start
     environment_slug: node-js
     instance_count: 1
@@ -47,7 +47,7 @@ workers:
       branch: main
       deploy_on_push: true
     source_dir: /
-    build_command: npm install --workspaces && npm run build
+    build_command: npm install --workspaces && npm install typescript --save-dev && npm run build
     run_command: npm --workspace packages/print-agent run start
     environment_slug: node-js
     instance_count: 1
