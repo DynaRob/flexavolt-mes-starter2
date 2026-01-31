@@ -9,6 +9,7 @@
     "start": "node dist/agent.js"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {

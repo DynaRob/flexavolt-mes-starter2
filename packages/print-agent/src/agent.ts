@@ -1,3 +1,4 @@
+import "dotenv/config";
 import fetch from "node-fetch";
 
 const BASE_URL = process.env.BASE_URL || "http://mes-api:8080";
