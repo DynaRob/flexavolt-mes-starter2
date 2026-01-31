@@ -23,7 +23,7 @@ async function main() {
       const res = await fetch(`${BASE_URL}/print-jobs/next?agent_id=${encodeURIComponent(AGENT_ID)}`, {
         headers: { "x-agent-token": TOKEN }
       });
-      const data = await res.json();
+      const data = await res.json() as { job?: any };
       const job = data.job;
 
       if (!job) {
