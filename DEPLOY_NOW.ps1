@@ -66,7 +66,7 @@ $appSpec = @{
                     deploy_on_push = $true
                 }
                 source_dir = "/"
-                build_command = "npm install && npm run build"
+                build_command = "npm install; npm run build"
                 run_command = "npm --workspace packages/mes-api run start"
                 environment_slug = "node-js"
                 instance_count = 1
@@ -96,7 +96,7 @@ $appSpec = @{
                     deploy_on_push = $true
                 }
                 source_dir = "/"
-                build_command = "npm install && npm run build"
+                build_command = "npm install; npm run build"
                 run_command = "npm --workspace packages/print-agent run start"
                 environment_slug = "node-js"
                 instance_count = 1
