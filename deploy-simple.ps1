@@ -1,8 +1,22 @@
-$doToken = "dop_v1_ada915e563f3d9f8a5ed284a7393443751c988365eb34f276ab0b38c56442fec"
-$githubRepo = "DynaRob/flexavolt-mes-starter2"
-$supabaseUrl = "https://djqzgzpkzbwbwszekcee.supabase.co"
-$supabaseAnonKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqcXpnenBremJ3YndzemVrY2VlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTMxNDk4NzMsImV4cCI6MjA2ODcyNTg3M30.IqSUzjSZ4wIiJ1iSJ6AkIaUppwN9tuNmfzxwqO5Wh1g"
-$supabaseServiceKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRqcXpnenBremJ3YndzemVrY2VlIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MzE0OTg3MywiZXhwIjoyMDY4NzI1ODczfQ.HD5xTBogKw6v2-Wh9EU1OUkgTPoWaga6AFPAFhUvExM"
+# Get tokens from environment variables
+$doToken = $env:DIGITALOCEAN_TOKEN
+$githubRepo = $env:GITHUB_REPO ?? "DynaRob/flexavolt-mes-starter2"
+$supabaseUrl = $env:SUPABASE_URL ?? "https://djqzgzpkzbwbwszekcee.supabase.co"
+$supabaseAnonKey = $env:SUPABASE_ANON_KEY
+$supabaseServiceKey = $env:SUPABASE_SERVICE_ROLE_KEY
+
+if (-not $doToken) {
+    Write-Host "ERROR: DIGITALOCEAN_TOKEN environment variable not set" -ForegroundColor Red
+    exit 1
+}
+if (-not $supabaseAnonKey) {
+    Write-Host "ERROR: SUPABASE_ANON_KEY environment variable not set" -ForegroundColor Red
+    exit 1
+}
+if (-not $supabaseServiceKey) {
+    Write-Host "ERROR: SUPABASE_SERVICE_ROLE_KEY environment variable not set" -ForegroundColor Red
+    exit 1
+}
 $fixtureToken = -join ((1..64) | ForEach-Object { '{0:X}' -f (Get-Random -Maximum 16) })
 $printAgentToken = -join ((1..64) | ForEach-Object { '{0:X}' -f (Get-Random -Maximum 16) })
 
