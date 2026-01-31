@@ -6,6 +6,10 @@
     "packages/mes-api",
     "packages/print-agent"
   ],
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
     "dev": "npm --workspace packages/mes-api run dev",
     "build": "npm --workspace packages/shared run build && npm --workspace packages/mes-api run build && npm --workspace packages/print-agent run build"
