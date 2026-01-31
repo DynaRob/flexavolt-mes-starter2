@@ -1,7 +1,7 @@
 import type { FastifyInstance } from "fastify";
 import { supabaseAdmin } from "../services/supabase.js";
 import { config } from "../config.js";
-import { zFixtureTestResult } from "@flexavolt/shared/src/zod.js";
+import { zFixtureTestResult } from "@flexavolt/shared";
 import { logUnitEvent } from "../services/events.js";
 
 export async function testResultsRoutes(app: FastifyInstance) {

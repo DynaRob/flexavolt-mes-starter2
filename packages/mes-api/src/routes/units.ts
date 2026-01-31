@@ -9,7 +9,7 @@ import {
   zAssembleRequest,
   zScanKitRequest,
   zMoveToStockRequest
-} from "@flexavolt/shared/src/zod.js";
+} from "@flexavolt/shared";
 
 export async function unitsRoutes(app: FastifyInstance) {
   app.addHook("preHandler", requireAuth);
